@@ -42,7 +42,45 @@ public class WordProcessor {
 	}
 	
 	public MyLinkedList extractLine(String aline) {
-
+		/* 
+		boolean inWord = false;
+		MyLinkedList wordList = new MyLinkedList();
+		int i = 0;
+		int wordLen = 0;
+		
+		while(i < aline.length()) {
+			if(Character.isLetter(aline[i])) {
+				if(inWord == false) {
+					start = i;
+					inWord = true;
+				}
+				wordLen++;
+			}
+			else if(inWord == true) {
+				String newWord = aline.substring(start, start + wordLen);
+				
+				if(newWord.length() > 1 || newWord.toUpperCase() == 'A' || newWord.toUpperCase() == 'I') {
+					if(wordList.containWord(newWord, start) == false) {
+						WordItem object = new WordItem(newWord, 1, start);
+						wordList.addOrdered(object);
+						
+						// Need to update occurence in multiple places. Need to find line number
+						
+						
+					}
+					//////////////
+					
+					
+				}
+				
+				wordLen = 0;
+				inWord = 0;
+				
+			}
+			i++;
+				
+		}
+		*/
 	}//end of extract
 	
 	public MyLinkedList extractAll(String fileName) throws IOException {
