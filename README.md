@@ -2,7 +2,7 @@
 
 # To-Do
 
-* Test the partial implementations
+* / Trace / Test the partial implementations
 
 ## Test
 
@@ -10,12 +10,12 @@
 
 ## MyLinkedList
 
-* Finish ContainWord -> How to store line numbers and occurence?
+* / Trace / Finish ContainWord -> How to store line numbers and occurence?
 
 ## WordProcessor
 
-* ExtractLine -> Needs occurence count and line number
-* ExtractAll -> Not started yet
+* / Trace / ExtractLine -> Needs occurence count and line number
+* ExtractAll -> whole method
 
 ## WordItem
 * compareTo -> whole method
