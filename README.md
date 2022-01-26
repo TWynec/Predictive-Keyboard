@@ -3,6 +3,7 @@
 # To-Do
 
 * / Trace / Test the partial implementations
+* # Make demo of things when complete
 
 ## Test
 
