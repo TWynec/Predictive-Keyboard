@@ -14,8 +14,12 @@ public class Tester {
 
 		//MyLinkedList allWords = wp.extractAll(fileName1);
 		
-		
-		MyLinkedList testtest = wp.extractLine(fileName1);
+		ArrayList<String> x = wp.fileRead(fileName1);
+        String[] str = new String[x.size()];
+
+		str[0] = x.get(1);
+		MyLinkedList testtest = wp.extractLine(str[0]);
+		System.out.println(testtest);
 
 		
 		//wp.writeToFile(allWords, "outSort1");
@@ -23,7 +27,7 @@ public class Tester {
 		//wp.writeToFile(allWords,"outSort2");
 		
 		//System.out.println(allWords);
-		System.out.println(testtest);
+		//System.out.println(testtest.toString());
 		
 		
 	}

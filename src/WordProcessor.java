@@ -66,9 +66,13 @@ public class WordProcessor {
 						WordItem object = new WordItem(newWord, 1, start);
 						wordList.addOrdered(object);
 						
-						// Need to update occurence in multiple places. Need to find line number
+						// Need to update occurrence in multiple places. Need to find line number
 						
 						
+					}
+					
+					else {
+						WordItem.updateItem(start);
 					}
 					//////////////
 					
@@ -81,6 +85,26 @@ public class WordProcessor {
 			}
 			i++;
 				
+		}
+		
+		if(inWord == true) {
+			String newWord = aline.substring(start, start + wordLen);
+			
+			if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
+				if(wordList.containWord(newWord, start) == false) {
+					WordItem object = new WordItem(newWord, 1, start);
+					wordList.addOrdered(object);
+					
+					// Need to update occurrence in multiple places. Need to find line number
+					
+					
+				}
+				
+				else {
+					WordItem.updateItem(start);
+				}
+				//////////////
+			}
 		}
 		
 		return wordList;
