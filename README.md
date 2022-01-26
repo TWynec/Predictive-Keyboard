@@ -6,7 +6,7 @@
 
 #Test
 
-*SortListOccurence -> Not sure where this has to be implemented, it's located in test
+*SortListOccurence -> Not sure where this has to be implemented, it's called in test
 
 #MyLinkedList
 
