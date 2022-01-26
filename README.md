@@ -14,7 +14,7 @@
 
 ## WordProcessor
 
-* / Trace / ExtractLine -> Needs occurence count and line number
+* / Trace / ExtractLine -> Needs occurence count and line number // Working otherwise
 * ExtractAll -> whole method
 
 ## WordItem
