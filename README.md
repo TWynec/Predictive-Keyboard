@@ -16,3 +16,7 @@
 
 *ExtractLine -> Needs occurence count and line number
 *ExtractAll -> Not started yet
+
+#WordItem
+*compareTo -> whole method
+*equals -> whole method
