@@ -12,12 +12,19 @@ public class Tester {
 		String fileName2="files/testfile2";
 		WordProcessor wp = new WordProcessor();
 
-		MyLinkedList allWords = wp.extractAll(fileName1);
-		wp.writeToFile(allWords, "outSort1");
-		allWords.sortListOcc(); //sort the list according to word occurrence, you have to implement it.
-		wp.writeToFile(allWords,"outSort2");
+		//MyLinkedList allWords = wp.extractAll(fileName1);
 		
-		System.out.println(allWords);
+		
+		MyLinkedList testtest = wp.extractLine(fileName1);
+
+		
+		//wp.writeToFile(allWords, "outSort1");
+		//allWords.sortListOcc(); //sort the list according to word occurrence, you have to implement it.
+		//wp.writeToFile(allWords,"outSort2");
+		
+		//System.out.println(allWords);
+		System.out.println(testtest);
+		
 		
 	}
 

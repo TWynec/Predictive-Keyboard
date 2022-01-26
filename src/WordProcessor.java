@@ -42,14 +42,16 @@ public class WordProcessor {
 	}
 	
 	public MyLinkedList extractLine(String aline) {
-		/* 
+		
 		boolean inWord = false;
 		MyLinkedList wordList = new MyLinkedList();
 		int i = 0;
 		int wordLen = 0;
+		int start = 0;
+		
 		
 		while(i < aline.length()) {
-			if(Character.isLetter(aline[i])) {
+			if(Character.isLetter(aline.charAt(i))) {
 				if(inWord == false) {
 					start = i;
 					inWord = true;
@@ -59,7 +61,7 @@ public class WordProcessor {
 			else if(inWord == true) {
 				String newWord = aline.substring(start, start + wordLen);
 				
-				if(newWord.length() > 1 || newWord.toUpperCase() == 'A' || newWord.toUpperCase() == 'I') {
+				if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
 					if(wordList.containWord(newWord, start) == false) {
 						WordItem object = new WordItem(newWord, 1, start);
 						wordList.addOrdered(object);
@@ -74,16 +76,19 @@ public class WordProcessor {
 				}
 				
 				wordLen = 0;
-				inWord = 0;
+				inWord = false;
 				
 			}
 			i++;
 				
 		}
-		*/
+		
+		return wordList;
+	
 	}//end of extract
 	
 	public MyLinkedList extractAll(String fileName) throws IOException {
+		return null;
 		
 	}
 	
