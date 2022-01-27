@@ -16,7 +16,7 @@
 ## WordProcessor
 
 * / Trace / ExtractLine -> Needs occurence count and line number // Working otherwise
-* ExtractAll -> whole method
+* / Artur / ExtractAll -> Started and mostly done, looping is remaining.
 
 ## WordItem
 * compareTo -> whole method
