@@ -112,7 +112,24 @@ public class WordProcessor {
 	}//end of extract
 	
 	public MyLinkedList extractAll(String fileName) throws IOException {
-		return null;
+		int i = 0; //i is the current line being read, used to increment the list.
+
+		FileReader fileReader = new FileReader(fileName);//these lines will scan the file to find the total number of lines, "i", then use that as the incrementer for the repetitive calling of the extractLine method.
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		while (bufferedReader.readLine() != null) i++;
+		fileReader.close();
+
+		MyLinkedList allLinesList = new MyLinkedList(); //Final linked list, will link end of first line to the first of the last line.
+
+		ArrayList<String> x = fileRead(fileName);//copied from tester, just converting ArrayList to a String Array.
+		String[] str = new String[x.size()];
+
+
+
+		str[0] = x.get(1);
+		MyLinkedList testtest = extractLine(str[0]);
+
+		return allLinesList;
 		
 	}
 	
