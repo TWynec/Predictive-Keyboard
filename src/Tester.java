@@ -12,7 +12,7 @@ public class Tester {
 		String fileName2="files/testfile2";
 		WordProcessor wp = new WordProcessor();
 
-		//MyLinkedList allWords = wp.extractAll(fileName1);
+		MyLinkedList allWords = wp.extractAll(fileName1);
 		
 		ArrayList<String> x = wp.fileRead(fileName1);
         String[] str = new String[x.size()];
@@ -20,6 +20,8 @@ public class Tester {
 		str[0] = x.get(1);
 		MyLinkedList testtest = wp.extractLine(str[0]);
 		System.out.println(testtest);
+		System.out.println("SPACE");
+		System.out.println(allWords);
 
 		
 		//wp.writeToFile(allWords, "outSort1");

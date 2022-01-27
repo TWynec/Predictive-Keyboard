@@ -113,7 +113,7 @@ public class WordProcessor {
 	
 	public MyLinkedList extractAll(String fileName) throws IOException {
 		int i = 0; //i is the current line being read, used to increment the list.
-
+		int cur = 0;
 		FileReader fileReader = new FileReader(fileName);//these lines will scan the file to find the total number of lines, "i", then use that as the incrementer for the repetitive calling of the extractLine method.
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		while (bufferedReader.readLine() != null) i++;
@@ -124,10 +124,15 @@ public class WordProcessor {
 		ArrayList<String> x = fileRead(fileName);//copied from tester, just converting ArrayList to a String Array.
 		String[] str = new String[x.size()];
 
+		while (cur != i) {
+
+			str[0] = x.get(cur);
+			MyLinkedList listLine = extractLine(str[0]);
+			allLinesList.add(listLine);
+			cur++;
+		}
 
 
-		str[0] = x.get(1);
-		MyLinkedList testtest = extractLine(str[0]);
 
 		return allLinesList;
 		
