@@ -3,6 +3,7 @@
 # To-Do
 
 * / Trace / Test the partial implementations
+* # Make demo of things when complete
 
 ## Test
 
@@ -15,8 +16,8 @@
 ## WordProcessor
 
 * / Trace / ExtractLine -> Needs occurence count and line number // Working otherwise
-* ExtractAll -> whole method
+* / Artur / ExtractAll -> Started and mostly done, looping is remaining.
 
 ## WordItem
 * compareTo -> whole method
-* equals -> whole method
+* / Artur / equals -> implemented and working.

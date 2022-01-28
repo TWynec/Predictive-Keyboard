@@ -53,8 +53,14 @@ public class WordItem implements Comparable {
 	//
 	@Override
 	public boolean equals(Object obj) {
+		if(obj instanceof WordItem) {
+			WordItem wItem = (WordItem) obj;
+			if (this.word == wItem.getWord()) {
+				return true;
+			}
+		}
 
-        return true;
+        return false;
     }
 	
 	@Override

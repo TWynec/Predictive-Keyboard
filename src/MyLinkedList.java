@@ -97,11 +97,11 @@ public class MyLinkedList implements Iterable<Object> {
 		 * then it returns true, Otherwise, it returns false.
 		 */
 		public boolean containWord(String word, int atLine) {
+
 						 
 			for(Node cur = this.head.next; cur != null; cur = cur.next) {
 				if(cur.data == word) {
 					WordItem.updateItem(atLine);
-					
 					return true;
 				}
 			}
