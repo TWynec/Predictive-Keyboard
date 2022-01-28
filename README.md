@@ -1,8 +1,6 @@
 # Predictive-Keyboard
 
 # To-Do
-
-* / Trace / Test the partial implementations
 * # Make demo of things when complete
 
 ## Test
@@ -11,11 +9,11 @@
 
 ## MyLinkedList
 
-* / Trace / Finish ContainWord -> How to store line numbers and occurence?
+* / Trace / Finish ContainWord -> Not comparing correctly
 
 ## WordProcessor
 
-* / Trace / ExtractLine -> Needs occurence count and line number // Working otherwise
+* / Trace / ExtractLine
 * / Artur / ExtractAll -> Started and mostly done, looping is remaining.
 
 ## WordItem
