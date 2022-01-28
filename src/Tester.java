@@ -30,6 +30,10 @@ public class Tester {
 		
 		//System.out.println(allWords);
 		//System.out.println(testtest.toString());
+
+		//WordItem wItem = new WordItem("car",1,1);//making two wordItems, testing if equals works, it does.
+		//WordItem wItem1 = new WordItem("cas",1,1);
+		//System.out.println(wItem.equals(wItem1));
 		
 		
 	}
