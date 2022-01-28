@@ -29,6 +29,7 @@ public class WordProcessor {
 		
 		FileReader fileReader = new FileReader(name);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
+        
         String aline = null;
         //read in the rest of rows
         //readLine() returns striped string, that discards any line-termination chars
@@ -41,7 +42,7 @@ public class WordProcessor {
 		return lines;
 	}
 	
-	public MyLinkedList extractLine(String aline) {
+	public MyLinkedList extractLine(String aline, int lineNumber) {
 		
 		boolean inWord = false;
 		MyLinkedList wordList = new MyLinkedList();
@@ -49,33 +50,24 @@ public class WordProcessor {
 		int wordLen = 0;
 		int start = 0;
 		
-		
 		while(i < aline.length()) {
-			if(Character.isLetter(aline.charAt(i))) {
+ 			if(Character.isLetter(aline.charAt(i))) {
 				if(inWord == false) {
 					start = i;
 					inWord = true;
 				}
 				wordLen++;
 			}
+ 			
 			else if(inWord == true) {
 				String newWord = aline.substring(start, start + wordLen);
 				
 				if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
-					if(wordList.containWord(newWord, start) == false) {
-						WordItem object = new WordItem(newWord, 1, start);
+					if(wordList.containWord(newWord, lineNumber) == false) {
+						WordItem object = new WordItem(newWord, 1, lineNumber);
 						wordList.addOrdered(object);
-						
-						// Need to update occurrence in multiple places. Need to find line number
-						
-						
+												
 					}
-					
-					else {
-						WordItem.updateItem(start);
-					}
-					//////////////
-					
 					
 				}
 				
@@ -91,19 +83,12 @@ public class WordProcessor {
 			String newWord = aline.substring(start, start + wordLen);
 			
 			if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
-				if(wordList.containWord(newWord, start) == false) {
-					WordItem object = new WordItem(newWord, 1, start);
+				if(wordList.containWord(newWord, lineNumber) == false) {
+					WordItem object = new WordItem(newWord, 1, lineNumber);
 					wordList.addOrdered(object);
-					
-					// Need to update occurrence in multiple places. Need to find line number
-					
-					
+										
 				}
 				
-				else {
-					WordItem.updateItem(start);
-				}
-				//////////////
 			}
 		}
 		

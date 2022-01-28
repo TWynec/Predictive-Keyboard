@@ -14,20 +14,31 @@ public class Tester {
 
 		//MyLinkedList allWords = wp.extractAll(fileName1);
 		
+		
+		//USED TO TEST EXTRACTLINE
 		ArrayList<String> x = wp.fileRead(fileName1);
         String[] str = new String[x.size()];
+        
+        // scans each line individually from testfile 1
+		for(int i = 0; i < x.size(); i++) {
+	        str[i] = x.get(i);
+			/*MyLinkedList testExtractLine = wp.extractLine(str[i], i);
+			System.out.println(testExtractLine);
+			wp.writeToFile(testExtractLine, "TestTest");*/
+		}
 
-		str[0] = x.get(1);
-		MyLinkedList testtest = wp.extractLine(str[0]);
-		System.out.println(testtest);
-
+		MyLinkedList testExtractLine = wp.extractLine(str[0], 0);
+		System.out.println(testExtractLine);
+		wp.writeToFile(testExtractLine, "TestExtractOneLine");
+		
+		// USE THIS TO TEST EXTRACT ALL ----------------
+		
 		
 		//wp.writeToFile(allWords, "outSort1");
 		//allWords.sortListOcc(); //sort the list according to word occurrence, you have to implement it.
 		//wp.writeToFile(allWords,"outSort2");
 		
 		//System.out.println(allWords);
-		//System.out.println(testtest.toString());
 		
 		
 	}
