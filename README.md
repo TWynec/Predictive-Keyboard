@@ -20,4 +20,4 @@
 
 ## WordItem
 * compareTo -> whole method
-* equals -> whole method
+* / Artur / equals -> implemented and working.
