@@ -31,11 +31,10 @@ public class Tester {
 		System.out.println(testExtractLine);
 		wp.writeToFile(testExtractLine, "TestExtractOneLine");
 		
-		// USE THIS TO TEST EXTRACT ALL ----------------
 		
 
-		//System.out.println("SPACE");
-		//System.out.println(allWords);
+		System.out.println("SPACE");
+		System.out.println(allWords);
 		
 		/*wp.writeToFile(allWords, "outSort1");
 		//allWords.sortListOcc(); //sort the list according to word occurrence, you have to implement it.

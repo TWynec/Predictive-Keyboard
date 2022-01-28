@@ -91,7 +91,7 @@ public class WordProcessor {
 				
 			}
 		}
-		
+	
 		return wordList;
 	
 	}//end of extract
@@ -116,8 +116,6 @@ public class WordProcessor {
 			allLinesList.add(listLine);
 			cur++;
 		}
-
-
 
 		return allLinesList;
 		
