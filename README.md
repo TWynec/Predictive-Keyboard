@@ -5,17 +5,17 @@
 
 ## Test
 
-* SortListOccurence -> Not sure where this has to be implemented, it's called in test
+* SortListOccurence -> called in test (not used)
 
 ## MyLinkedList
 
-* / Trace / Finish ContainWord -> Not comparing correctly
+* / Trace / Finish ContainWord -> Try using your equals instead of ==, if that doesn't fix it let me know
 
 ## WordProcessor
 
-* / Trace / ExtractLine
+* / Trace / ExtractLine -> done hopefully.
 * / Artur / ExtractAll -> Started and mostly done, looping is remaining.
 
 ## WordItem
-* compareTo -> whole method
+* compareTo
 * / Artur / equals -> implemented and working.
