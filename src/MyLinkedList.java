@@ -98,10 +98,11 @@ public class MyLinkedList implements Iterable<Object> {
 		 */
 		public boolean containWord(String word, int atLine) {
 
-						 
 			for(Node cur = this.head.next; cur != null; cur = cur.next) {
-				if(cur.data == word) {
-					WordItem.updateItem(atLine);
+				WordItem currentNode = (WordItem) cur.data;
+
+				if(currentNode.getWord().equalsIgnoreCase(word)) {
+					currentNode.updateItem(atLine);
 					return true;
 				}
 			}
