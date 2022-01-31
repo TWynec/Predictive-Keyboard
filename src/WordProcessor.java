@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
 
 
 /*
@@ -42,7 +43,7 @@ public class WordProcessor {
 		return lines;
 	}
 	
-	public MyLinkedList extractLine(String aline, int lineNumber) {
+	public MyLinkedList extractLine(String aline, int lineNumber, MyLinkedList totalList) {
 
 		boolean inWord = false;
 		MyLinkedList wordList = new MyLinkedList();
@@ -63,10 +64,9 @@ public class WordProcessor {
 				String newWord = aline.substring(start, start + wordLen);
 				
 				if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
-					if(wordList.containWord(newWord, lineNumber) == false) {
-						System.out.println(lineNumber);
-						WordItem object = new WordItem(newWord, 1, lineNumber);
-						wordList.addOrdered(object);
+					if(totalList.containWord(newWord, lineNumber) == false) {
+						WordItem object = new WordItem(newWord.toLowerCase(), 1, lineNumber);
+						totalList.addOrdered(object);
 												
 					}
 
@@ -85,9 +85,9 @@ public class WordProcessor {
 			String newWord = aline.substring(start, start + wordLen);
 			
 			if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
-				if(wordList.containWord(newWord, lineNumber) == false) {
-					WordItem object = new WordItem(newWord, 1, lineNumber);
-					wordList.addOrdered(object);
+				if(totalList.containWord(newWord, lineNumber) == false) {
+					WordItem object = new WordItem(newWord.toLowerCase(), 1, lineNumber);
+					totalList.addOrdered(object);
 										
 				}
 				
@@ -114,8 +114,8 @@ public class WordProcessor {
 		while (cur != i) {
 
 			str[0] = x.get(cur);
-			MyLinkedList listLine = extractLine(str[0], cur); // added a second parameter to extractLine, it needs the current line number now
-			allLinesList.combine(listLine);
+			MyLinkedList listLine = extractLine(str[0], cur, allLinesList); // added a second parameter to extractLine, it needs the current line number now
+			//allLinesList.combine(listLine);
 			cur++;
 		}
 

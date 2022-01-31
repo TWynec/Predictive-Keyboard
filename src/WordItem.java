@@ -59,12 +59,14 @@ public class WordItem implements Comparable {
 			if (this.word == wItem.getWord()) {
 				return true;
 			}
+			else return false;
 		}
 		if(obj instanceof String) {
 			String wordCompare = obj.toString();
 			if(this.word.equalsIgnoreCase(wordCompare)) {
 				return true;
 			}
+			else return false;
 		}
 
         return false;

@@ -27,9 +27,9 @@ public class Tester {
 			wp.writeToFile(testExtractLine, "TestTest");*/
 		}
 
-		MyLinkedList testExtractLine = wp.extractLine(str[0], 0);
-		System.out.println(testExtractLine);
-		wp.writeToFile(testExtractLine, "TestExtractOneLine");
+		//MyLinkedList testExtractLine = wp.extractLine(str[0], 0);
+		//System.out.println(testExtractLine);
+		//wp.writeToFile(testExtractLine, "TestExtractOneLine");
 		
 		
 
