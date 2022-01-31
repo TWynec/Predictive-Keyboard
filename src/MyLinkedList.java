@@ -109,7 +109,7 @@ public class MyLinkedList implements Iterable<Object> {
 				WordItem currentNode = (WordItem) cur.data;
 
 				if(currentNode.equals(word)) {
-					currentNode.updateItem(atLine);
+					//currentNode.updateItem(atLine);
 					return true;
 				}
 			}

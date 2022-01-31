@@ -37,7 +37,7 @@ public class WordItem implements Comparable {
 	//implement this method
 	public int compareTo(Object other) {
 			WordItem compared = (WordItem) other;
-			return this.word.compareTo(compared.word);
+			return this.word.toLowerCase().compareTo(compared.word.toLowerCase());
 	}
 	
 	//
