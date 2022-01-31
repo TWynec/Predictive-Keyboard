@@ -67,6 +67,13 @@ public class MyLinkedList implements Iterable<Object> {
 			this.size ++; //increment size
 			return true;
 		}
+
+		public void combine(MyLinkedList other) {
+			Node cur;
+			for(cur = other.head.next; cur != null; cur = cur.next){
+				this.addOrdered((Comparable<Object>) cur.data);
+			}
+		}
 		
 		public void addOrdered( Comparable<Object> dataToAdd ) {
 			
@@ -101,7 +108,7 @@ public class MyLinkedList implements Iterable<Object> {
 			for(Node cur = this.head.next; cur != null; cur = cur.next) {
 				WordItem currentNode = (WordItem) cur.data;
 
-				if(currentNode.getWord().equalsIgnoreCase(word)) {
+				if(currentNode.equals(word)) {
 					currentNode.updateItem(atLine);
 					return true;
 				}

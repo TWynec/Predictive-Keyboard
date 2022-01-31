@@ -36,7 +36,8 @@ public class WordItem implements Comparable {
 	@Override
 	//implement this method
 	public int compareTo(Object other) {
-			return 0;
+			WordItem compared = (WordItem) other;
+			return this.word.compareTo(compared.word);
 	}
 	
 	//
@@ -56,6 +57,12 @@ public class WordItem implements Comparable {
 		if(obj instanceof WordItem) {
 			WordItem wItem = (WordItem) obj;
 			if (this.word == wItem.getWord()) {
+				return true;
+			}
+		}
+		if(obj instanceof String) {
+			String wordCompare = obj.toString();
+			if(this.word.equalsIgnoreCase(wordCompare)) {
 				return true;
 			}
 		}

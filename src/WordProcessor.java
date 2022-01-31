@@ -43,7 +43,7 @@ public class WordProcessor {
 	}
 	
 	public MyLinkedList extractLine(String aline, int lineNumber) {
-		
+
 		boolean inWord = false;
 		MyLinkedList wordList = new MyLinkedList();
 		int i = 0;
@@ -64,10 +64,12 @@ public class WordProcessor {
 				
 				if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
 					if(wordList.containWord(newWord, lineNumber) == false) {
+						System.out.println(lineNumber);
 						WordItem object = new WordItem(newWord, 1, lineNumber);
 						wordList.addOrdered(object);
 												
 					}
+
 					
 				}
 				
@@ -97,8 +99,8 @@ public class WordProcessor {
 	}//end of extract
 	
 	public MyLinkedList extractAll(String fileName) throws IOException {
-		int i = 0; //i is the current line being read, used to increment the list.
-		int cur = 0;
+		int i = 0; //i is the total number of lines.
+		int cur = 0; //cur is the current line being read.
 		FileReader fileReader = new FileReader(fileName);//these lines will scan the file to find the total number of lines, "i", then use that as the incrementer for the repetitive calling of the extractLine method.
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		while (bufferedReader.readLine() != null) i++;
@@ -112,8 +114,8 @@ public class WordProcessor {
 		while (cur != i) {
 
 			str[0] = x.get(cur);
-			MyLinkedList listLine = extractLine(str[0], i); // added a second parameter to extractLine, it needs the current line number now
-			allLinesList.add(listLine);
+			MyLinkedList listLine = extractLine(str[0], cur); // added a second parameter to extractLine, it needs the current line number now
+			allLinesList.combine(listLine);
 			cur++;
 		}
 
