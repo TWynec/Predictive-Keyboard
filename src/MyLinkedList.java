@@ -108,8 +108,8 @@ public class MyLinkedList implements Iterable<Object> {
 			for(Node cur = this.head.next; cur != null; cur = cur.next) {
 				WordItem currentNode = (WordItem) cur.data;
 
-				if(currentNode.equals(word)) {
-					//currentNode.updateItem(atLine);
+				if(currentNode.equals(word)) {//this is being called at the correct times, however it is updating for every element in the list rather than just the specified one.
+					currentNode.updateItem(atLine);
 					return true;
 				}
 			}

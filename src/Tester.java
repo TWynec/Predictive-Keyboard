@@ -33,7 +33,7 @@ public class Tester {
 		
 		
 
-		System.out.println("SPACE");
+
 		System.out.println(allWords);
 		
 		/*wp.writeToFile(allWords, "outSort1");
