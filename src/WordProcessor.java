@@ -98,7 +98,7 @@ public class WordProcessor {
 	
 	}//end of extract
 	
-	public MyLinkedList extractAll(String fileName) throws IOException {
+	public MyLinkedList extractAll(String fileName) throws IOException, IndexOutOfBoundsException {
 		int i = 0; //i is the total number of lines.
 		int cur = 0; //cur is the current line being read.
 		FileReader fileReader = new FileReader(fileName);//these lines will scan the file to find the total number of lines, "i", then use that as the incrementer for the repetitive calling of the extractLine method.
@@ -112,11 +112,11 @@ public class WordProcessor {
 		String[] str = new String[x.size()];
 
 		while (cur != i) {
-
 			str[0] = x.get(cur);
 			MyLinkedList listLine = extractLine(str[0], cur, allLinesList); // added a second parameter to extractLine, it needs the current line number now
 			//allLinesList.combine(listLine);
 			cur++;
+			
 		}
 
 		return allLinesList;
