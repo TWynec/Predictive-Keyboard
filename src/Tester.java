@@ -14,7 +14,8 @@ public class Tester {
 
 		MyLinkedList allWords = wp.extractAll(fileName1);       
 		
-		allWords.MergeSort();
+		//allWords.MergeSortOcc();
+		//allWords.MergeSortAlpha();
 		System.out.println(allWords);
 		//wp.writeToFile(allWords, "allWordsOutSort2");
 

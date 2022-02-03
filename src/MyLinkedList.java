@@ -99,7 +99,7 @@ public class MyLinkedList implements Iterable<Object> {
 			//return newList;
 		}
 		
-		public void MergeSort() {
+		public void MergeSortOcc() {
 			
 			Queue q = new Queue();
 
@@ -118,7 +118,7 @@ public class MyLinkedList implements Iterable<Object> {
 				sublist1 = q.dequeue();
 				sublist2 = q.dequeue();
 		
-				MyLinkedList tempList = merge(sublist1, sublist2);
+				MyLinkedList tempList = mergeOcc(sublist1, sublist2);
 				q.enqueue(tempList);
 				
 			}
@@ -128,13 +128,70 @@ public class MyLinkedList implements Iterable<Object> {
 			
 		}
 		
-		public MyLinkedList merge(MyLinkedList sublist1, MyLinkedList sublist2) {
+		public MyLinkedList mergeOcc(MyLinkedList sublist1, MyLinkedList sublist2) {
 			MyLinkedList ret = new MyLinkedList();
 			while(sublist1.head.next != null && sublist2.head.next != null) {				
 				Node fa = sublist1.head.next;
 				Node fb = sublist2.head.next;		
 
 				if(((WordItem) fa.data).getCount() > ((WordItem) fb.data).getCount()) {
+					sublist1.removeFirst();
+					ret.add(fa.data);
+				}
+				
+				else {
+					sublist2.removeFirst();
+					ret.add(fb.data);
+				}		
+			}
+			while(sublist1.head.next != null) {
+				ret.add(sublist1.head.next.data);
+				sublist1.removeFirst();
+			}
+			
+			while(sublist2.head.next != null) {
+				ret.add(sublist2.head.next.data);
+				sublist2.removeFirst();
+			}
+			return ret;
+		}
+		
+		public void MergeSortAlpha() {
+			
+			Queue q = new Queue();
+
+		    for (Node node = this.head.next; node != null; node = node.next) {
+		    	MyLinkedList newList = new MyLinkedList();
+				newList.addFirst(node.data);
+				
+				q.enqueue(newList);
+				
+			}
+
+			while(q.getSize() > 1) {
+				MyLinkedList sublist1 = new MyLinkedList();
+				MyLinkedList sublist2 = new MyLinkedList();
+
+				sublist1 = q.dequeue();
+				sublist2 = q.dequeue();
+		
+				MyLinkedList tempList = mergeAlpha(sublist1, sublist2);
+				q.enqueue(tempList);
+				
+			}
+			MyLinkedList nl = new MyLinkedList();
+			nl = q.dequeue();
+			this.head = nl.head;
+			
+		}
+		
+		public MyLinkedList mergeAlpha(MyLinkedList sublist1, MyLinkedList sublist2) {
+			MyLinkedList ret = new MyLinkedList();
+			while(sublist1.head.next != null && sublist2.head.next != null) {				
+				Node fa = sublist1.head.next;
+				Node fb = sublist2.head.next;		
+
+				if(((WordItem) fa.data).getWord().compareTo(((WordItem) fb.data).getWord()) < 0) {
 					sublist1.removeFirst();
 					ret.add(fa.data);
 				}
