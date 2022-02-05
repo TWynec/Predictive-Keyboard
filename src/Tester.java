@@ -12,7 +12,7 @@ public class Tester {
 		String fileName2="files/testfile2";
 		WordProcessor wp = new WordProcessor();
 
-		MyLinkedList allWords = wp.extractAll(fileName1);       
+		MyLinkedList allWords = wp.extractAll(fileName2);
 		
 		//allWords.MergeSortOcc();
 		//allWords.MergeSortAlpha();
