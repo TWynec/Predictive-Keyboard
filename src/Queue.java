@@ -51,16 +51,8 @@ public class Queue {
 			return temp;
 		}
 		
-		public Object front() throws Exception {
-			if(this.size == 0) {
-				throw new Exception("The queue is empty!");
-			}
-			
-			return this.head.data;
-		}
-		
 		public int getSize() {
 			return this.size;
 		}
-	
+
 }
