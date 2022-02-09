@@ -23,9 +23,36 @@ public class Tester {
 		for(int i = 0; i < 3; i++) {
 	        str[i] = x.get(i);
 			MyLinkedList testExtractLine = wp.extractLine(str[i], i, allWords);
-			allWords.MergeSortAlpha();
-			System.out.println("ExtractLine test case: " + i + "\n" + allWords);
+			//allWords.MergeSortAlpha();
+			//allWords.MergeSortOcc();
+			//System.out.println("mergeSortOcc Test Case: " + i + "\n" + allWords);
 		}
+		
+		/*System.out.println("Test containWord: " + allWords);
+		System.out.println("1. Basically " + allWords.containWord("Basically", 0));
+		System.out.println("2. scanning " + allWords.containWord("scanning", 0));
+		System.out.println("3. I " + allWords.containWord("I", 0));*/
+		
+		/*System.out.println("Test removeFirst: \n" + allWords);
+		allWords.removeFirst();
+		System.out.println("Test removeFirst: \n" + allWords);
+		allWords.removeFirst();
+		System.out.println("Test removeFirst: \n" + allWords);
+		allWords.removeFirst();
+		System.out.println("Test removeFirst: \n" + allWords);*/
+		
+		/*System.out.println("Test addFirst: \n" + allWords);
+		allWords.addFirst("TestCase1");
+		allWords.addFirst("TestCase2");
+		allWords.addFirst("TestCase3");
+		System.out.println(allWords);*/
+
+
+		
+		/*System.out.println("mergeSortOcc test Case: 4");
+		MyLinkedList extractAll = wp.extractAll(fileName1);
+		System.out.println(extractAll);*/
+
 		
 		//allWords.MergeSortOcc();
 		//allWords.MergeSortAlpha();

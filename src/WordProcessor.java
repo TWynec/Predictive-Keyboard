@@ -122,7 +122,7 @@ public class WordProcessor {
 
 		bufReader.close();
 		while (cur != i) {
-			System.out.println("Currently reading Line Number: " + cur);
+			//System.out.println("Currently reading Line Number: " + cur);
 
 			str[0] = listOfLines.get(cur);
 			MyLinkedList listLine = extractLine(str[0], cur, allLinesList); // added a second parameter to extractLine, it needs the current line number now
