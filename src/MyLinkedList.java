@@ -191,7 +191,7 @@ public class MyLinkedList implements Iterable<Object> {
 				Node fa = sublist1.head.next;
 				Node fb = sublist2.head.next;		
 
-				if(((WordItem) fa.data).getWord().compareTo(((WordItem) fb.data).getWord()) < 0) {
+				if(((WordItem) fa.data).getWord().toUpperCase().compareTo(((WordItem) fb.data).getWord().toUpperCase()) < 0) {
 					sublist1.removeFirst();
 					ret.add(fa.data);
 				}
