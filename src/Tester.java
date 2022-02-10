@@ -25,9 +25,12 @@ public class Tester {
 			MyLinkedList testExtractLine = wp.extractLine(str[i], i, allWords);
 			
 			
-			//Uncomment sorting methods one at a time
 			
+			//Uncomment sorting methods and extractLine one at a time
+			
+			System.out.println("extractLine: " + allWords);
 			//allWords.MergeSortAlpha();
+			//System.out.println("mergeSortAlpha Test Case: " + i + "\n" + allWords);
 			//allWords.MergeSortOcc();
 			//System.out.println("mergeSortOcc Test Case: " + i + "\n" + allWords);
 			
