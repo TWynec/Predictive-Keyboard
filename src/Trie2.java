@@ -93,7 +93,7 @@ public class Trie2 {
 			String rest = p.substring(1);
 			char ch = p.charAt(0);
 			subRoot = root.children.get(ch);
-			return wordsPrefixedBy(subRoot, rest);
+			return wordsPrefixedBy(subRoot, rest);//"rest" is being used to see where the next node is, current issue is figuring out the base case and having it stop.
 		}
 		if(!findWord(p)) {
 			System.out.println("No longer contains");
