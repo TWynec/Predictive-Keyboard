@@ -12,10 +12,18 @@ public class Tester {
 		String fileName2="files/testfile2";
 		WordProcessor wp = new WordProcessor();
 
-		//MyLinkedList allWords = wp.extractAll(fileName1);
+		MyLinkedList allWords = wp.extractAll(fileName2);
+		System.out.println(allWords);
 		
+		allWords.MergeSortAlpha();
 		
-		//Test ExtractLine
+		wp.writeToFile(allWords, "allWordsOutSort1");
+		
+		allWords.MergeSortOcc();
+		
+		wp.writeToFile(allWords, "allWordsOutSort2");
+		
+		/*//Test ExtractLine
 		MyLinkedList allWords = new MyLinkedList();
 		ArrayList<String> x = wp.fileRead(fileName1);
         String[] str = new String[x.size()];
@@ -116,7 +124,7 @@ public class Tester {
 		System.out.println("Test equals on testWord3 and testWord3: " + testWord3.equals(testWord3));
 
 
-
+	*/
 		
 	}
 
