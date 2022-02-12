@@ -86,23 +86,24 @@ public class Trie2 {
 
 		LinkedList RET = new LinkedList();
 
-		if (!findWord(p)) {
+
+		if(p != null) {
+		String rest = p.substring(1); //rest is a substring of s, by excluding the first character in s
+		char ch = p.charAt(0);        //ch is the first letter of s
+		TrieNode subRoot= root.children.get(ch);	//return the child that ch associated with.
+		if(p.length() == 1 && subRoot != null) {//if s contains only one letter, and current node has a child associated with that letter, we find the prefix in Trie!
+			printSorted(root, p, RET); //base case
+		}
+		if(subRoot == null) {
+			System.out.println("non return");
 			return RET;
 		}
-		else {
-			if(p != null) {
-			String rest = p.substring(1); //rest is a substring of s, by excluding the first character in s
-			char ch = p.charAt(0);        //ch is the first letter of s
-			TrieNode subRoot= root.children.get(ch);	//return the child that ch associated with.
-			if(p.length() == 1 && subRoot != null) //if s contains only one letter, and current node has a child associated with that letter, we find the prefix in Trie!
-				printSorted(root, p, RET);	                 //base case
-			if(subRoot == null)
-				return RET;
-			else
-				return wordsPrefixedBy(subRoot, rest);    //recursive, In this way, we follow the path of the trie from root down towards leaf
-			}
-			return RET;
+		else
+			return wordsPrefixedBy(subRoot, rest);    //recursive, In this way, we follow the path of the trie from root down towards leaf
 		}
+
+		return RET;
+
 
 	}//end of method
 
@@ -131,6 +132,8 @@ public class Trie2 {
 		Trie2 tr = new Trie2();
 		tr.insertString("hello");
 		tr.insertString("hell");
-		System.out.println(tr.wordsPrefixedBy("h"));
+		tr.insertString("help");
+		tr.insertString("head");
+		System.out.println(tr.wordsPrefixedBy("hea"));
 	}
 }
