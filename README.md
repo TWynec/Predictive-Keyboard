@@ -1,5 +1,5 @@
 # Predictive-Keyboard
 
 # To-Do
-* # Make demo of things when complete
-* Compile input file 2
+* Fix sort to sort by occurrence + alpha (maybe)
+* Generate array + trie from AllWordsOutSort file
