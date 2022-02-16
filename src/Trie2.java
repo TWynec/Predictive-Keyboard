@@ -46,7 +46,7 @@ public class Trie2 {
 			mylist.add(s); ///System.out.println(s);  //for example, instead of print out the word, you have to add the word s into a linkedlist object you have defined or passed in.
 		}
 		for (Character ch : node.children.keySet()) {
-			printSorted(node.children.get(ch), s + ch);
+			printSorted(node.children.get(ch), s + ch, mylist);
 		}
 	}
 
@@ -100,10 +100,10 @@ public class Trie2 {
 
 	public static TrieNode findRoot(TrieNode root, String p) {
 		if (p != null) {
-			String rest = p.substring(1); //rest is a substring of s, by excluding the first character in s
-			char ch = p.charAt(0);        //ch is the first letter of s
+			String rest = p.substring(1); //rest is a substring of p, by excluding the first character in p
+			char ch = p.charAt(0);        //ch is the first letter of p
 			TrieNode child = root.children.get(ch);
-			if (p.length() == 1 && child != null) //if s contains only one letter, and current node has a child associated with that letter, we find the prefix in Trie!
+			if (p.length() == 1 && child != null) //if p contains only one letter, and current node has a child associated with that letter, we find the prefix in Trie!
 				return child;                     //base case
 			else
 				return findRoot(child, rest);    //recursive, In this way, we follow the path of the trie from root down towards leaf
@@ -134,6 +134,7 @@ public class Trie2 {
 		System.out.println(tr.findWord("he"));
 		
 		tr.printSorted();*/
+/*
 
 		Trie2 tr = new Trie2();
 		tr.insertString("hello");
@@ -142,7 +143,8 @@ public class Trie2 {
 		tr.insertString("head");
 		tr.insertString("bread");
 		//System.out.println(tr.findWord("hea"));
-		System.out.println(tr.wordsPrefixedBy("he"));
+		System.out.println(tr.wordsPrefixedBy("hea"));
+*/
 
 	}
 }
