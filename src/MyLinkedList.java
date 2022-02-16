@@ -92,6 +92,18 @@ public class MyLinkedList implements Iterable<Object> {
 			//return newList;
 		}
 		
+		public MyLinkedList getFirstNine(MyLinkedList all) {
+			MyLinkedList ret = new MyLinkedList();
+			int i = 0;
+			Node cur = new Node();
+			for(cur = all.head.next; cur != null && i < 9; cur = cur.next, i++) {
+				ret.add(cur.data);
+			}
+
+			return ret;
+			
+		}
+		
 		public void MergeSortOcc() {
 			
 			Queue q = new Queue();

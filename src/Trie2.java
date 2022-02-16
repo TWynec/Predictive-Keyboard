@@ -41,7 +41,7 @@ public class Trie2 {
 		}
 	}
 
-	private void printSorted(TrieNode node, String s, LinkedList mylist) {  //the helper
+	private void printSorted(TrieNode node, String s, MyLinkedList mylist) {  //the helper
 		if (node.aword) {
 			mylist.add(s); ///System.out.println(s);  //for example, instead of print out the word, you have to add the word s into a linkedlist object you have defined or passed in.
 		}
@@ -72,7 +72,7 @@ public class Trie2 {
 
 	// First, please add this public method into the provided Trie2 class.
 	// Then implement the private helper method below this method.
-	public LinkedList wordsPrefixedBy(String p) {
+	public MyLinkedList wordsPrefixedBy(String p) {
 
 		return wordsPrefixedBy(this.root,  p);
 
@@ -80,11 +80,11 @@ public class Trie2 {
 
 	// The method returns a LinkedList of all words that have a prefix p. For example, if the current prefix
 	// tree object stores a set of words {apple, bike, bake, pen, did, ape, child, cat, file, hello, he, hell},
-	// the method call wordsPrefixedBy(root, “ap”) returns two words in the tree {“apple”, “ape”}
+	// the method call wordsPrefixedBy(root, 
 	// Helper methods are allowed.
-	private LinkedList wordsPrefixedBy(TrieNode root, String p) {
+	private MyLinkedList wordsPrefixedBy(TrieNode root, String p) {
 
-		LinkedList RET = new LinkedList();
+		MyLinkedList RET = new MyLinkedList();
 
 		if (findWord(root, p)) {
 			TrieNode preWord = findRoot(root, p);
@@ -134,17 +134,17 @@ public class Trie2 {
 		System.out.println(tr.findWord("he"));
 		
 		tr.printSorted();*/
-/*
 
-		Trie2 tr = new Trie2();
+
+		/*Trie2 tr = new Trie2();
 		tr.insertString("hello");
 		tr.insertString("hell");
 		tr.insertString("help");
 		tr.insertString("head");
 		tr.insertString("bread");
 		//System.out.println(tr.findWord("hea"));
-		System.out.println(tr.wordsPrefixedBy("hea"));
-*/
+		System.out.println(tr.wordsPrefixedBy("hea"));*/
+
 
 	}
 }
