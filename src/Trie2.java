@@ -86,25 +86,31 @@ public class Trie2 {
 
 		LinkedList RET = new LinkedList();
 
-		TrieNode subRoot = root;
-
-
 		if (findWord(root, p)) {
-			String rest = p.substring(1);
-			char ch = p.charAt(0);
-			subRoot = root.children.get(ch);
-			return wordsPrefixedBy(subRoot, rest);//"rest" is being used to see where the next node is, current issue is figuring out the base case and having it stop.
+			TrieNode preWord = findRoot(root, p);
+			printSorted(preWord, p, RET);
+			return RET;
 		}
-		if(!findWord(p)) {
-			System.out.println("No longer contains");
+		else {
 			return RET;
 		}
 
-		printSorted(subRoot, p, RET);
-		return RET;
-
 
 	}//end of method
+
+	public static TrieNode findRoot(TrieNode root, String p) {
+		if (p != null) {
+			String rest = p.substring(1); //rest is a substring of s, by excluding the first character in s
+			char ch = p.charAt(0);        //ch is the first letter of s
+			TrieNode child = root.children.get(ch);
+			if (p.length() == 1 && child != null) //if s contains only one letter, and current node has a child associated with that letter, we find the prefix in Trie!
+				return child;                     //base case
+			else
+				return findRoot(child, rest);    //recursive, In this way, we follow the path of the trie from root down towards leaf
+		}
+		return root;
+	}
+
 
 
 
@@ -134,7 +140,9 @@ public class Trie2 {
 		tr.insertString("hell");
 		tr.insertString("help");
 		tr.insertString("head");
+		tr.insertString("bread");
 		//System.out.println(tr.findWord("hea"));
-		System.out.println(tr.wordsPrefixedBy("hea"));
+		System.out.println(tr.wordsPrefixedBy("he"));
+
 	}
 }
