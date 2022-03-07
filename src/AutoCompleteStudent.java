@@ -22,13 +22,16 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 	boolean inWord = false;
 	String current = "";
 	String temp = "";
+	String fileName2="files/testfile2";
+
+
 	//ArrayList<String> popular = null;
 	String popular[] = {"apple", "apply", "boy", "bike", "book", "brook", "brown",
 			"car", "counter"};
 	
 	Trie2 myTrie = new Trie2();
 	
-	public AutoCompleteStudent() {
+	public AutoCompleteStudent() throws IndexOutOfBoundsException, IOException {
 		JFrame frame = new JFrame("Preditive Application");
 		frame.setSize(640,640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,11 +64,21 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		frame.add(inputPanel);
 		frame.setVisible(true);
 		partialWord = "";  //this the prefix you are currently having.
-				
-		for(int i = 0; i < popular.length; i++) {
-			myTrie.insertString(popular[i]);
+		
+		WordProcessor wp = new WordProcessor();	
+		MyLinkedList allWords = wp.extractAll(fileName2);
+		String[] listArray = allWords.toArray(allWords);
+		
+		//for(int i = 0; i < popular.length; i++) {
+			//myTrie.insertString(popular[i]);
+			
+		//}
+		for(int i = 0; i < listArray.length; i++) {
+			myTrie.insertString(listArray[i]);
 			
 		}
+		
+		
 		
 }
 

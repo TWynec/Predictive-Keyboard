@@ -104,6 +104,20 @@ public class MyLinkedList implements Iterable<Object> {
 			
 		}
 		
+		public String[] toArray(MyLinkedList list) {
+			
+			Node cur = new Node();
+			String[] ret = new String[list.size];
+			int i = 0;
+			
+			for(cur = list.head.next; cur != null; cur = cur.next, i++) {
+				ret[i] = ((WordItem) cur.data).getWord();
+			}
+			
+			return ret;
+			
+		}
+		
 		public void MergeSortOcc() {
 			
 			Queue q = new Queue();
