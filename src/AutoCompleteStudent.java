@@ -65,6 +65,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		frame.setVisible(true);
 		partialWord = "";  //this the prefix you are currently having.
 		
+		// Get all of the words and convert to array
 		WordProcessor wp = new WordProcessor();	
 		MyLinkedList allWords = wp.extractAll(fileName2);
 		String[] listArray = allWords.toArray(allWords);
@@ -73,6 +74,8 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 			//myTrie.insertString(popular[i]);
 			
 		//}
+		
+		// make trie
 		for(int i = 0; i < listArray.length; i++) {
 			myTrie.insertString(listArray[i]);
 			
@@ -105,6 +108,8 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 				//---------------------------YOU HAVE TO DO------------------------------------------
 				// In your homework, you have to search the prefix tree, by sending partialWord to the tree and returns 
 				// up to nine most popular words start with partialWord.( i.e. popular array is populated by a trie method)
+				
+				// Display predictions
 				MyLinkedList firstNine = new MyLinkedList();
 				firstNine = firstNine.getFirstNine(myTrie.wordsPrefixedBy(partialWord));
 				System.out.println(firstNine.toString());
