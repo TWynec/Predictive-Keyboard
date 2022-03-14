@@ -23,6 +23,9 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 	String current = "";
 	String temp = "";
 	String fileName2="files/testfile2";
+	
+	MyLinkedList firstNine = new MyLinkedList();
+
 
 
 	//ArrayList<String> popular = null;
@@ -38,7 +41,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setLayout(new GridLayout(2,1));
-		
+				
 		JPanel inputPanel = new JPanel();
 		JPanel outPanel = new JPanel();
 		
@@ -50,7 +53,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		inputPanel.add(input);
 		output.setEditable(true);
 		output.addKeyListener(this);
-		input.setEditable(false);
+		input.setEditable(true);
 		input.addKeyListener(this);
 		input.setLineWrap(true);
 		output.setLineWrap(true);
@@ -64,6 +67,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		frame.add(inputPanel);
 		frame.setVisible(true);
 		partialWord = "";  //this the prefix you are currently having.
+
 		
 		// Get all of the words and convert to array
 		WordProcessor wp = new WordProcessor();	
@@ -75,7 +79,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 			
 		//}
 		
-		// make trie
+		// fills out the trie
 		for(int i = 0; i < listArray.length; i++) {
 			myTrie.insertString(listArray[i]);
 			
@@ -99,6 +103,8 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		char ch = e.getKeyChar();
 		int index = parseKeyCode(keyCode);
 		
+
+		
 		// Handle regular alphabetic letter keys
 		if ( index < 0 ) {	
 			output.setEditable(true); //echo what we input
@@ -110,12 +116,14 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 				// up to nine most popular words start with partialWord.( i.e. popular array is populated by a trie method)
 				
 				// Display predictions
-				MyLinkedList firstNine = new MyLinkedList();
+				
+				//MyLinkedList firstNine = new MyLinkedList();
 				firstNine = firstNine.getFirstNine(myTrie.wordsPrefixedBy(partialWord));
 				System.out.println(firstNine.toString());
-				
+				input.setText(firstNine.toString());
 				
 				System.out.println("Current Prefix:\"" + partialWord + "\"");
+				
 				
 				//---------------------------------------------------------------------------
 				//But HERE, for teacher's demo, I just append the hard coded popular array into the JTextArea of input,
@@ -126,8 +134,8 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		else if( index >= 0 && index <= 9 ){ // if the key pressed is enter or space or numbers
 			//System.out.println(index);
 			output.setEditable(false);
-			if(popular != null)
-				current += popular[index] + " ";
+			if(firstNine != null)
+				current += (firstNine.getHead(firstNine)).toString() + " ";
 			//System.out.println("curent2:" + current);
 			output.setText(current);
 			inWord = false;

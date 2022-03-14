@@ -232,6 +232,16 @@ public class MyLinkedList implements Iterable<Object> {
 			return ret;
 		}
 		
+		public MyLinkedList getHead(MyLinkedList list) {
+			MyLinkedList ret = new MyLinkedList();
+			if (list.head.next != null) {
+				Node cur = list.head.next;
+				ret.add(cur.data);
+			}
+			
+			return ret;
+		}
+		
 	
 
 		/*
