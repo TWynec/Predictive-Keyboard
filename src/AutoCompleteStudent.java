@@ -80,7 +80,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		//}
 		
 		// fills out the trie
-		for(int i = 0; i < listArray.length; i++) {
+		for(int i = 0; i < listArray.length; i++) {//needs to be filled out correctly using the dictionary of words+occurence
 			//myTrie.insertString(listArray[i]);
 			
 		}
