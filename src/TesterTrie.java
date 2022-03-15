@@ -1,6 +1,7 @@
 public class TesterTrie {
     public static void main(String[] args) {
         Trie2 myTrie = new Trie2();
+        /*
         myTrie.insertString("apple");
         myTrie.insertString("bike");
         myTrie.insertString("bake");
@@ -15,6 +16,8 @@ public class TesterTrie {
         myTrie.insertString("hell");
         System.out.println(myTrie.wordsPrefixedBy("ap"));
         System.out.println(myTrie.wordsPrefixedBy("he"));
+
+         */
 
     }
 }

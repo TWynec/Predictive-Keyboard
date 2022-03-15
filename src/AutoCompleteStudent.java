@@ -81,7 +81,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		
 		// fills out the trie
 		for(int i = 0; i < listArray.length; i++) {
-			myTrie.insertString(listArray[i]);
+			//myTrie.insertString(listArray[i]);
 			
 		}
 		
@@ -118,6 +118,8 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 				// Display predictions
 				
 				//MyLinkedList firstNine = new MyLinkedList();
+
+
 				firstNine = firstNine.getFirstNine(myTrie.wordsPrefixedBy(partialWord));
 				System.out.println(firstNine.toString());
 				input.setText(firstNine.toString());

@@ -18,18 +18,14 @@ import java.util.ArrayList;
 public class WordItem implements Comparable {
 	private String word;
 	private  int count;
-	private  ArrayList<Integer> atLines;
 	
-	public WordItem(String word, int c, int atLine) {
+	public WordItem(String word, int c) {
 		this.word = word;
 		this.count = c;
-		this.atLines = new ArrayList<Integer>();
-		atLines.add(atLine);
 	}
 	
 	public void updateItem(int atLine) {
 		this.count ++;
-		this.atLines.add(atLine);
 	}
 	
 		
@@ -75,8 +71,7 @@ public class WordItem implements Comparable {
 	@Override
 	public String toString() {
 		String ret = "";
-		ret += word + ":" + this.count + "->" +//changed from WordItem.
-				this.atLines.toString();//changed from WordItem.
+		ret += word + ":" + this.count;//changed from WordItem.
 		return ret;
 	}
 	

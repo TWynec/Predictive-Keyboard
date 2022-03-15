@@ -6,6 +6,7 @@ public class Trie2 {
 		Map<Character, TrieNode> children = new TreeMap<>();//TreeMap is java build-in structure, 
 		boolean aword = false;		//Basically it acts like a Hashtable or Hashmap, establishing a mapping between Key and Value
 		                                //Unlike hash table, keys in TreeMap are sorted!
+		int freq = 0;
 	}
 	
 	private TrieNode root;
@@ -13,11 +14,14 @@ public class Trie2 {
 		this.root = new TrieNode();
 	}
 
-	public void insertString(String s) {
-		insertString(root, s);
+	public void insertString(String s, int f) {
+		insertString(root, s, f);
 	}
+
+	public void setRoot(TrieNode nRoot){this.root = nRoot;}//set new root to trim down the trie.
+	public TrieNode getRoot(){return this.root;}//get the root of the trie.
 	
-	private void insertString(TrieNode root, String s) {
+	private void insertString(TrieNode root, String s, int f) {
 		TrieNode cur = root;
 		for (char ch : s.toCharArray()) {
 			TrieNode next = cur.children.get(ch);
@@ -26,6 +30,7 @@ public class Trie2 {
 			cur = next;
 		}
 		cur.aword = true;
+		cur.freq = f;
 	}
 	
 	public void printSorted() {
@@ -136,14 +141,14 @@ public class Trie2 {
 		tr.printSorted();*/
 
 
-		/*Trie2 tr = new Trie2();
-		tr.insertString("hello");
-		tr.insertString("hell");
-		tr.insertString("help");
-		tr.insertString("head");
-		tr.insertString("bread");
+		Trie2 tr = new Trie2();
+		tr.insertString("hello",1);
+		tr.insertString("hell",1);
+		tr.insertString("help",1);
+		tr.insertString("head",1);
+		tr.insertString("bread",1);
 		//System.out.println(tr.findWord("hea"));
-		System.out.println(tr.wordsPrefixedBy("hea"));*/
+		System.out.println(tr.wordsPrefixedBy("hea"));
 
 
 	}

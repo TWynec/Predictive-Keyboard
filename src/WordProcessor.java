@@ -65,7 +65,7 @@ public class WordProcessor {
 				
 				if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
 					if(totalList.containWord(newWord, lineNumber) == false) {
-						WordItem object = new WordItem(newWord, 1, lineNumber);
+						WordItem object = new WordItem(newWord, 1);
 						totalList.addOrdered(object);
 												
 					}
@@ -86,7 +86,7 @@ public class WordProcessor {
 			
 			if(newWord.length() > 1 || Character.toUpperCase(newWord.charAt(0)) == 'A' || Character.toUpperCase(newWord.charAt(0)) == 'I') {
 				if(totalList.containWord(newWord, lineNumber) == false) {
-					WordItem object = new WordItem(newWord, 1, lineNumber);
+					WordItem object = new WordItem(newWord, 1);
 					totalList.addOrdered(object);
 										
 				}
