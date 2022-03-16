@@ -10,8 +10,10 @@ public class Trie2 {
 	}
 	
 	private TrieNode root;
-	public Trie2() {
+	private WordItem dict[];
+	public Trie2(WordItem d[]) {
 		this.root = new TrieNode();
+		this.dict = d;
 	}
 
 	public void insertString(String s, int f) {
@@ -140,6 +142,7 @@ public class Trie2 {
 		
 		tr.printSorted();*/
 
+/*
 
 		Trie2 tr = new Trie2();
 		tr.insertString("hello",1);
@@ -149,7 +152,7 @@ public class Trie2 {
 		tr.insertString("bread",1);
 		//System.out.println(tr.findWord("hea"));
 		System.out.println(tr.wordsPrefixedBy("hea"));
-
+*/
 
 	}
 }
