@@ -32,9 +32,10 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 	String popular[] = {"apple", "apply", "boy", "bike", "book", "brook", "brown",
 			"car", "counter"};
 	
-	Trie2 myTrie = new Trie2();
+	Trie2 myTrie;
+	WordItem dict[];
 	
-	public AutoCompleteStudent() throws IndexOutOfBoundsException, IOException {
+	public AutoCompleteStudent(WordItem d[]) throws IndexOutOfBoundsException, IOException {
 		JFrame frame = new JFrame("Preditive Application");
 		frame.setSize(640,640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,24 +68,32 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		frame.add(inputPanel);
 		frame.setVisible(true);
 		partialWord = "";  //this the prefix you are currently having.
+		this.dict = d;
 
-		
+		//then create the Trie here
+		this.myTrie = new Trie2(this.dict);
+		for(WordItem word : this.dict) {
+			myTrie.insertString(word.getWord(), word.getCount());
+		}
+		/*
 		// Get all of the words and convert to array
 		WordProcessor wp = new WordProcessor();	
 		MyLinkedList allWords = wp.extractAll(fileName2);
 		String[] listArray = allWords.toArray(allWords);
-		
+		*/
+
 		//for(int i = 0; i < popular.length; i++) {
 			//myTrie.insertString(popular[i]);
 			
 		//}
 		
 		// fills out the trie
+		/*
 		for(int i = 0; i < listArray.length; i++) {//needs to be filled out correctly using the dictionary of words+occurence
 			//myTrie.insertString(listArray[i]);
 			
 		}
-		
+		*/
 		
 		
 }
@@ -238,11 +247,34 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		}
 		return ret;
 	}
-	
+
+	public static WordItem[] readDict(String name) throws IOException {
+		ArrayList<WordItem> words = new ArrayList<WordItem>();
+
+		FileReader fileReader = new FileReader(name);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String aline = null;
+		while ((aline = bufferedReader.readLine()) != null) {
+			aline = aline.trim();
+			if(aline.length() > 0){
+				String temp[] = aline.split(",");
+				words.add( new WordItem( temp[0], Integer.parseInt(temp[1]) ) );
+			}
+		}
+		fileReader.close();
+
+		WordItem dict[] = new WordItem[words.size()];
+		for(int i = 0; i < dict.length; i ++)
+			dict[i] = words.get(i);
+
+		return dict;
+	}
+
 	public static void main(String[] args) throws IOException {
 		//WordProcessor wp = new WordProcessor();
+		WordItem d[] = AutoCompleteStudent.readDict("files/dictionary.txt");
 		System.out.println("Initializing .....");
-		new AutoCompleteStudent(); 
+		new AutoCompleteStudent(d);
 		System.out.println("Done Intialization and Ready to type in!");
 	}
 }

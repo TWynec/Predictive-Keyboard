@@ -1,6 +1,6 @@
 public class TesterTrie {
     public static void main(String[] args) {
-        Trie2 myTrie = new Trie2();
+        //Trie2 myTrie = new Trie2();
         /*
         myTrie.insertString("apple");
         myTrie.insertString("bike");
