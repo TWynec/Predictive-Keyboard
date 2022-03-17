@@ -24,14 +24,17 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 	String temp = "";
 	String fileName2="files/testfile2";
 	
-	MyLinkedList firstNine = new MyLinkedList();
+	//MyLinkedList firstNine = new MyLinkedList();
 
 
 
-	//ArrayList<String> popular = null;
-	String popular[] = {"apple", "apply", "boy", "bike", "book", "brook", "brown",
-			"car", "counter"};
-	
+	ArrayList<String> predictions = null;
+	WordItem leastFreq = new WordItem("zz", Integer.MAX_VALUE);
+
+	//String popular[] = {"apple", "apply", "boy", "bike", "book", "brook", "brown",
+			//"car", "counter"};
+
+
 	Trie2 myTrie;
 	WordItem dict[];
 	
@@ -42,14 +45,14 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setLayout(new GridLayout(2,1));
-				
+
 		JPanel inputPanel = new JPanel();
 		JPanel outPanel = new JPanel();
-		
+
 		outPanel.setBackground(Color.LIGHT_GRAY);
 		inputPanel.setLayout(new GridLayout(1,1));
 		outPanel.setLayout(new GridLayout(1,1));
-		
+
 		outPanel.add(output);
 		inputPanel.add(input);
 		output.setEditable(true);
@@ -62,7 +65,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		//change the font and the color in the input textArea
 		Font font = new Font("Verdana", Font.BOLD, 16);
 		input.setFont(font);
-		input.setForeground(Color.BLUE);	
+		input.setForeground(Color.BLUE);
 
 		frame.add(outPanel);
 		frame.add(inputPanel);
@@ -111,9 +114,7 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 		int keyCode = e.getKeyCode();
 		char ch = e.getKeyChar();
 		int index = parseKeyCode(keyCode);
-		
 
-		
 		// Handle regular alphabetic letter keys
 		if ( index < 0 ) {	
 			output.setEditable(true); //echo what we input
@@ -128,41 +129,74 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 				
 				//MyLinkedList firstNine = new MyLinkedList();
 
+				/////////////
 
-				firstNine = firstNine.getFirstNine(myTrie.wordsPrefixedBy(partialWord));
-				System.out.println(firstNine.toString());
-				input.setText(firstNine.toString());
+				//firstNine = firstNine.getFirstNine(myTrie.wordsPrefixedBy(partialWord));
+				//firstNine.MergeSortOcc();
+				//System.out.println(firstNine.toString());
+				//input.setText(firstNine.toString());
+
+				/////////////////
+
 				
 				System.out.println("Current Prefix:\"" + partialWord + "\"");
-				
-				
+
+				if(partialWord.length() == 1) {
+					predictions = myTrie.mostFreqWords(partialWord, leastFreq);
+				}
+				else{
+					predictions = myTrie.mostFreqWordsNull(partialWord);
+				}
+
+				//display the popular list of words
+				input.setText(arrtoString(predictions));
+
 				//---------------------------------------------------------------------------
 				//But HERE, for teacher's demo, I just append the hard coded popular array into the JTextArea of input,
 				// the bottom part of the input area. YOU HAVE TO USE input.setText(.....);
 				//input.append(arrtoString(popular));
 			}
 		}
-		else if( index >= 0 && index <= 9 ){ // if the key pressed is enter or space or numbers
-			//System.out.println(index);
+		else if( index >= 0 && index <= 9 ){ // if the key pressed is enter, space or numbers
 			output.setEditable(false);
-			if(firstNine != null)
-				current += (firstNine.getHead(firstNine)).toString() + " ";
-			//System.out.println("curent2:" + current);
+
+			if(index == 0) { //enter and space keys
+				current += this.partialWord + " ";
+				//delete leastFreq item and add current word
+				int count = leastFreq.getCount();
+				this.myTrie.delWord(leastFreq.getWord());
+				this.myTrie.insertString(partialWord, count);
+			}
+			//handles missing partial word
+			else if(predictions != null && predictions.size() > 0) {
+				current += predictions.get(index - 1) + " ";
+				this.myTrie.addCount(predictions.get(index - 1));
+			}
+			//if there's no prefix
+			else {
+				current += this.partialWord + " ";
+
+				int count = leastFreq.getCount();
+				this.myTrie.delWord(leastFreq.getWord());
+				this.myTrie.insertString(partialWord, count + 1);
+			}
+
+			// set text to most likely prediction, delete earlier partial word
 			output.setText(current);
 			inWord = false;
 			partialWord = "";
-		}//end of outer else
-		else if( index == 10 || index == 11) {
+		}
+
+		else if( index == 11 || index == 12) {
 			output.setEditable(false);
-			current = current.substring(0, current.length() - 1); //remove ending space
-			if(index == 10) //comma
+			current = current.substring(0, current.length() - 1); // remove space and replace with a comma or period
+			if(index == 10)
 				current += ", ";
 			else
-				current += ". "; //period
-			//System.out.println("curent2:" + current);
+				current += ". ";
+
 			output.setText(current);
 		}
-	
 	}
 	
 	private int parseKeyCode(int code) {
@@ -273,9 +307,35 @@ class AutoCompleteStudent extends JFrame implements KeyListener {
 	public static void main(String[] args) throws IOException {
 		//WordProcessor wp = new WordProcessor();
 		WordItem d[] = AutoCompleteStudent.readDict("files/dictionary.txt");
+		long then = System.currentTimeMillis();
 		System.out.println("Initializing .....");
 		new AutoCompleteStudent(d);
+		long now = System.currentTimeMillis();
 		System.out.println("Done Intialization and Ready to type in!");
+		System.out.println("Time to initialize: " + (now - then));
 	}
 }
+
+// Original Code ____________________________
+
+			/* else if( index >= 0 && index <= 9 ){ // if the key pressed is enter or space or numbers
+			//System.out.println(index);
+			output.setEditable(false);
+			if(firstNine != null)
+				current += (firstNine.getHead(firstNine)).toString() + " ";
+			//System.out.println("curent2:" + current);
+			output.setText(current);
+			inWord = false;
+			partialWord = "";
+		}//end of outer else
+		else if( index == 10 || index == 11) {
+			output.setEditable(false);
+			current = current.substring(0, current.length() - 1); //remove ending space
+			if(index == 10) //comma
+				current += ", ";
+			else
+				current += ". "; //period
+			//System.out.println("curent2:" + current);
+			output.setText(current);
+		}*/
 

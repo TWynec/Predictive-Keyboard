@@ -34,7 +34,7 @@ public class Trie2 {
 		cur.aword = true;
 		cur.freq = f;
 	}
-	
+
 	public void printSorted() {
 		printSorted(root, "");
 	}
@@ -57,6 +57,152 @@ public class Trie2 {
 		}
 	}
 
+	private void newprintSorted(TrieNode node, String s, MyLinkedList mylist) {
+		for (Character ch : node.children.keySet()) {
+			newprintSorted(node.children.get(ch), s + ch, mylist);
+		}
+
+		int count = 0;
+
+		if (node.aword && count <= 8) {
+			WordItem newWord = new WordItem(s, node.freq);
+			mylist.add(newWord);
+		}
+	}
+
+	public ArrayList<String> mostFreqWordsNull(String prefix) {
+		ArrayList<String> wordList = new ArrayList<String>();
+		ArrayList<Integer> freqList = new ArrayList<Integer>();
+
+		if(prefix == null)
+			return wordList;
+
+		//find the root of the subtree
+		TrieNode sub = findRoot(this.root, prefix);
+
+		if(sub == null) {
+			return wordList;
+		}
+		mostFreqWordsNull(sub, prefix, wordList, freqList);
+		return wordList;
+	}
+
+	 private void mostFreqWordsNull(TrieNode node, String prefix, ArrayList<String> wordList,
+                           ArrayList<Integer> freqList) {
+        for (Character ch : node.children.keySet()) {
+			mostFreqWordsNull(node.children.get(ch), prefix + ch, wordList, freqList);
+        }
+        int insertPos = insertSpot(freqList, node.freq);
+
+        if (node.aword && insertPos <= 9 - 1) {
+            wordList.add(insertPos, prefix);
+            freqList.add(insertPos, node.freq);
+
+            if(wordList.size() > 9) {
+                wordList.remove(wordList.size() - 1);
+                freqList.remove(freqList.size() - 1);
+            }
+        }
+    }
+
+	public ArrayList<String> mostFreqWords(String prefix, WordItem leastFreq) {
+		ArrayList<String> wordList = new ArrayList<String>();
+		ArrayList<Integer> freqList = new ArrayList<Integer>();
+
+		if(prefix == null)
+			return wordList;
+
+		//find the root of the subtree
+		TrieNode sub = findRoot(this.root, prefix);
+
+		if(sub == null) {
+			return wordList;
+		}
+		mostFreqWords(sub, prefix, wordList, freqList, leastFreq);
+		return wordList;
+	}
+
+	private void mostFreqWords(TrieNode node, String prefix, ArrayList<String> wordList,
+							ArrayList<Integer> freqList, WordItem leastFreq) {
+		for (Character ch : node.children.keySet()) {
+			mostFreqWords(node.children.get(ch), prefix + ch, wordList, freqList, leastFreq);
+		}
+		int insertPos = insertSpot(freqList, node.freq);
+
+		//update leastFreq,
+		if(node.aword && node.freq < leastFreq.getCount()) {
+			leastFreq.setCount(node.freq);
+			leastFreq.setWord(prefix);
+		}
+
+		if (node.aword && insertPos <= 9 - 1) {
+			wordList.add(insertPos, prefix);
+			freqList.add(insertPos, node.freq);
+
+			//if wordList is too large, remove
+			if(wordList.size() > 9) {
+				wordList.remove(wordList.size() - 1);
+				freqList.remove(freqList.size() - 1);
+			}
+		}
+	}
+
+	public boolean delWord(String delWord) {
+		return delWord(root, delWord);
+	}
+
+	private boolean delWord(TrieNode node, String delWord) {
+
+		LinkedList<TrieNode> nodeList = new LinkedList<TrieNode>();
+		TrieNode parent = node;
+		int i = delWord.length() - 1;
+
+		for (char ch : delWord.toCharArray()) {
+			nodeList.push(parent);
+			TrieNode next = parent.children.get(ch);
+			if (next == null) {
+				return false;
+			}
+			parent = next;
+		}
+
+		if(!parent.children.isEmpty() ) {
+			parent.aword = false;
+			return true;
+		}
+
+		// delete node
+		while( !nodeList.isEmpty() ) {
+			TrieNode cur = nodeList.pop();
+
+			// check if word has common prefix
+			if (cur.children.size() == 1 && (i == delWord.length() - 1 || ! cur.children.get(delWord.charAt(i)).aword)){
+				cur.children.remove(delWord.charAt(i));
+			}
+			else {
+				break;
+			}
+			i --;
+		}
+		return true;
+	}
+
+	public void addCount(String prefix) {
+		addCount(root, prefix);
+	}
+
+	// Helper for addCount
+	private void addCount(TrieNode node, String prefix) {
+		if(prefix != null) {
+			String rest = prefix.substring(1); // follow the substring
+			char ch = prefix.charAt(0);
+			TrieNode child = node.children.get(ch);
+			if(prefix.length() == 1 && child != null)
+				child.freq ++;
+			else
+				addCount(child, rest);
+		}
+	}
 
 	public boolean findWord(String s) {
 		return findWord(root, s);
@@ -75,6 +221,15 @@ public class Trie2 {
 				return findWord(child, rest);    //recursive, In this way, we follow the path of the trie from root down towards leaf
 		}
 		return false;
+	}
+
+	// find an insert spot in freqList, so that frequency is sorted in descending order
+	private int insertSpot(ArrayList<Integer> freqList, int toAdd) {
+		int len = freqList.size();
+		int i;
+		for(i = len - 1; i >= 0 && freqList.get(i) < toAdd; i --) { //empty body
+		}
+		return (i + 1);
 	}
 
 	// First, please add this public method into the provided Trie2 class.
@@ -96,6 +251,7 @@ public class Trie2 {
 		if (findWord(root, p)) {
 			TrieNode preWord = findRoot(root, p);
 			printSorted(preWord, p, RET);
+			//newprintSorted(preWord, p, RET);
 			return RET;
 		}
 		else {

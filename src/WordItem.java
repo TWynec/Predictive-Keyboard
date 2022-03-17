@@ -27,7 +27,14 @@ public class WordItem implements Comparable {
 	public void updateItem(int atLine) {
 		this.count ++;
 	}
-	
+
+	public void setWord(String w) {
+		this.word = new String(w);
+	}
+
+	public void setCount(int c) {
+		this.count = c;
+	}
 		
 	@Override
 	//implement this method
